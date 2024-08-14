@@ -6,30 +6,30 @@ import (
 )
 
 func TestFill(t *testing.T) {
-	type args[T any] struct {
-		t    T
-		opts []fillerOpt[T]
+	type args struct {
+		t    any
+		opts []fillerOpt
 	}
 	tests := []struct {
 		name    string
-		args    args[any]
+		args    args
 		want    any
 		wantErr bool
 	}{
 		{
 			name: "want error on scalar",
-			args: args[any]{
+			args: args{
 				t:    1,
-				opts: []fillerOpt[any]{},
+				opts: []fillerOpt{},
 			},
 			want:    1,
 			wantErr: true,
 		},
 		{
 			name: "want error on pointer",
-			args: args[any]{
+			args: args{
 				t:    &([]int{1, 2, 3}),
-				opts: []fillerOpt[any]{},
+				opts: []fillerOpt{},
 			},
 			want:    &([]int{1, 2, 3}),
 			wantErr: true,
